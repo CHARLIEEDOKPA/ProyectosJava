@@ -63,7 +63,9 @@ public class Examen12Mayo23DAW {
                 case 3 -> {
                     String codigo = EntradaTeclado.pedirCadena("Dime el codigo: ");
                     double importe = EntradaTeclado.pedirDoble("Dime el importe: ");
-                    if (comisaria.insertarMultaPolicia(codigo, new Multa(importe))) {
+                    Policia p =  comisaria.encontrarPorCodigo(codigo);
+                    boolean esTransito = p != null && p instanceof PoliciaTransito;
+                    if (esTransito && comisaria.insertarMultaPolicia(codigo, new Multa(importe))) {
                         System.out.println("\nSe ha insertado la multa\n");
                     } else {
                         System.out.println("\nNo se insertado la multa\n");
